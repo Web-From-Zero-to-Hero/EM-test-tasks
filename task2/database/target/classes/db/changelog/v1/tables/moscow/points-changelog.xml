@@ -1,0 +1,34 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="v1-moscow-points-1" author="Dmitry Matov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="moscow_points"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="moscow_points">
+            <column name="id" type="integer" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="latitude" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="longitude" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="v1-moscow-points-2" author="Dmitry Matov">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="moscow_points"/>
+        </preConditions>
+
+        <loadData tableName="moscow_points" file="db/data/moscow/points.csv"/>
+    </changeSet>
+
+</databaseChangeLog>

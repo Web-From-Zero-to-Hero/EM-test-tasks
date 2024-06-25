@@ -1,0 +1,26 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="v1-user-logs-1" author="Dmitry Matov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user_logs"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="user_logs">
+            <column name="id" type="integer" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="base_price" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="optimized_price" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

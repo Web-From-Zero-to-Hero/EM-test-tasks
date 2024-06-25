@@ -1,0 +1,26 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <!--Initial Script-->
+    <include file="scripts/initial-script-changelog.xml" relativeToChangelogFile="true" />
+
+    <!--Tables-->
+    <include file="tables/moscow/points-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="tables/moscow/geo-points-changelog.xml" relativeToChangelogFile="true" />
+    <include file="tables/moscow/addresses-changelog.xml" relativeToChangelogFile="true" />
+
+    <include file="tables/nizhny-novgorod/points-changelog.xml" relativeToChangelogFile="true" />
+    <include file="tables/nizhny-novgorod/geo-points-changelog.xml" relativeToChangelogFile="true" />
+    <include file="tables/nizhny-novgorod/addresses-changelog.xml" relativeToChangelogFile="true" />
+
+    <include file="tables/log/logs-changelog.xml" relativeToChangelogFile="true" />
+    <include file="tables/log/user-logs-changelog.xml" relativeToChangelogFile="true" />
+
+
+    <!--Functions-->
+    <include file="functions/get-points-changelog.xml" relativeToChangelogFile="true" />
+    <include file="functions/search-addresses-changelog.xml" relativeToChangelogFile="true" />
+
+</databaseChangeLog>

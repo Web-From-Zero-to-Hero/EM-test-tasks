@@ -1,0 +1,52 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="v1-users-1" author="Dmitry Matov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="users"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="users">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="firstName" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastName" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sex" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="troubles" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="createdAt" type="java.sql.types.timestamp_with_timezone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updatedAt" type="java.sql.types.timestamp_with_timezone">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="v1-users-2" author="Dmitry Matov">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="users"/>
+        </preConditions>
+
+        <loadData tableName="users" file="users.csv"/>
+    </changeSet>
+    <!-- liquibase update - -changelog-file=changelog.xml - -url=jdbc:postgresql://localhost:5432/user_manager - -driver=org.postgresql.Driver - -username=postgres - -password="runi124t" -->
+   
+
+</databaseChangeLog>
